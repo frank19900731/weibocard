@@ -9,7 +9,7 @@ weibocard
 
 再后来产生了做一个瀑布流布局的微博卡片式展示页面的想法，就是本项目。
 
-项目代码简单而丑陋，效果可见 [Demo](http://frank19900731.github.io/weibocard-demo/) 
+项目代码简单粗糙，效果可见 [Demo](http://frank19900731.github.io/weibocard-demo/) 
 
 ##用法 
 
@@ -29,7 +29,7 @@ sudo apt-get install mongodb mongodb-clients
 
 mongo 的简单用法
 
-命令行输入 mongo 进入数据库连接
+终端输入 mongo 进入数据库连接
 
 ```
 # 显示所有数据库
