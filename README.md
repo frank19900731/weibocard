@@ -50,14 +50,25 @@ db.favorites.find({'_id': 3780707769508128})
 
 更多平台安装方法和命令行请见 [官方文档](http://docs.mongodb.org/manual/)。
 
-###安装 pymango 包
-
-Ubuntu 下通过 pip 安装
+###安装相关的包
 
 ```
-sudo apt-get install python-pip
-sudo pip install pymango
+pip install pymongo
+pip install PIL
 ```
+
+or
+
+```
+easy_install pymongo
+easy_install PIL
+```
+
+or
+
+到 [pymongo官网](http://api.mongodb.org/python/current/)、[PIL官网](http://www.pythonware.com/products/pil/) 下载安装。
+
+还用到了 [sinaweibopy](http://github.liaoxuefeng.com/sinaweibopy/)，只有两个 py 文件，直接包含在本项目中。
 
 ###运行
 
