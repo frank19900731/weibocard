@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>新浪微博卡片设计-@太极儒</title>
+
+    <link href="stylesheets/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="stylesheets/bootstrap/style.css" rel="stylesheet" type="text/css">
+    <link href="stylesheets/bootstrap/normalize.css" rel="stylesheet" type="text/css">
+    <link href="stylesheets/my.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/weiboflow.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <script type="text/javascript" src="js/fancybox/jquery.fancybox.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox.css" media="screen" />
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row wbnav">
+        <ul class="nav nav-justified">
+            <li></li>
+            <li><h3 class="text-muted">微博卡片</h3></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    颜色选择 <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:void(0)" onclick="$('body').css('background', 'lightgrey')">浅灰色</a></li>
+                    <li><a href="javascript:void(0)" onclick="$('body').css('background', 'gold')">金色</a></li>
+                    <li><a href="javascript:void(0)" onclick="$('body').css('background', 'greenyellow')">黄绿色</a></li>
+                    <li><a href="javascript:void(0)" onclick="$('body').css('background', 'lightpink')">浅粉色</a></li>
+                    <li><a href="javascript:void(0)" onclick="$('body').css('background', 'orange')">橙色</a></li>
+                    <li><a href="javascript:void(0)" onclick="$('body').css('background', 'plum')">紫红色</a></li>
+                    <li><a href="javascript:void(0)" onclick="$('body').css('background', 'lightblue')">浅蓝色</a></li>
+                    <li><a href="javascript:void(0)" onclick="$('body').css('background', 'skyblue')">天蓝色</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    日期选择 <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="javascript:void(0)" onclick="jumpTo(2014)">2014</a></li>
+						<!--
+                    <li><a href="javascript:void(0)" onclick="jumpTo(2013)">2013</a></li>
+                    <li><a href="javascript:void(0)" onclick="jumpTo(2012)">2012</a></li>
+                    <li><a href="javascript:void(0)" onclick="jumpTo(2011)">2011</a></li>
+						-->
+                </ul>
+            </li>
+            <li><a href="https://github.com/frank19900731/weibocard" target="_blank">Github</a></li>
+            <li><a href="http://frank19900731.github.io">返回博客</a></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <div id="row" class="row" style="margin-top: 100px;">
+        <div id="main">
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
