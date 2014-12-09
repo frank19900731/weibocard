@@ -17,7 +17,7 @@ weibocard
 
 ###申请新浪微博的 Key 与 Secret
 
-在 [微博开放平台](http://open.weibo.com/) 创建应用，获得 Key、Secret，填写 callback_url，具体方法网上有 [介绍](新浪微博开放平台获取的appkey)。添加自己的微博账号作为测试用户，应用无需提交审核，保持测试授权即可，仅 [访问频次有影响](http://open.weibo.com/wiki/%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE%E9%A2%91%E6%AC%A1%E6%9D%83%E9%99%90)。
+在 [微博开放平台](http://open.weibo.com/) 创建应用，获得 Key、Secret，填写 callback_url，具体方法网上有 [介绍](http://www.baidu.com/s?wd=%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0%E8%8E%B7%E5%8F%96%E7%9A%84appkey&rsv_spt=1&issp=1&f=8&rsv_bp=0&rsv_idx=2&ie=utf-8&tn=16046049_dg&rsv_enter=1&rsv_sug3=1&rsv_sug2=0&inputT=142)。添加自己的微博账号作为测试用户，应用无需提交审核，保持测试授权即可，仅 [访问频次有影响](http://open.weibo.com/wiki/%E6%8E%A5%E5%8F%A3%E8%AE%BF%E9%97%AE%E9%A2%91%E6%AC%A1%E6%9D%83%E9%99%90)。
 
 将 Key、Secret、callback_url 写入 config.ini 文件。
 
