@@ -64,6 +64,7 @@ cd python
 # 获取 Access Token
 # 复制产生链接到浏览器，页面会重定向到 http://apps.weibo.com/appname?code=XXX
 # appname 是你在创建新浪微博应用时设定的站内应用地址，把 XXX 拷贝下来作为程序输入，也就是 Enter code >XXX
+# 一定要拷贝，虽然有的终端自动为你加链接，但可能是错误的
 python accessToken.py
 
 # 抓取收藏的微博
