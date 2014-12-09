@@ -4,7 +4,10 @@ import pymongo
 from pymongo import Connection
 import datetime
 import cStringIO, urllib2
-from PIL import Image
+try:
+    from PIL import Image
+except ImportError:
+    import Image
 import re
 import time
 
