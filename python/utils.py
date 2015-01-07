@@ -98,7 +98,11 @@ def getSize(url):
 # convert url to link in status text
 def convertUrl(text):
     urls = re.findall(r'http[s]?\://[a-zA-Z0-9\.\?/&\=\:]+', text)
+    urlset = set()
     for url in urls:
+        if url in urlset:
+            continue
+        urlset.add(url)
         text = text.replace(url, '<a href="' + url + '" target="_blank">' + url + '</a>')
     return text
 
