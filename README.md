@@ -9,7 +9,7 @@ weibocard
 
 再后来产生了做一个瀑布流布局的微博卡片式展示页面的想法，就是本项目。
 
-项目代码简单粗糙，效果可见 [Demo](http://frank19900731.github.io/weibocard-demo/) 。
+项目代码简单粗糙，效果可见 [Demo](http://frank19900731.github.io/demo/weibocard/) 。
 
 更多复杂的页面定制和搜索查询功能还请自行实现。
 
