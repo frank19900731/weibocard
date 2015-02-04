@@ -1,3 +1,4 @@
+#coding: UTF-8
 from snspy import APIClient
 from snspy import SinaWeiboMixin
 import pymongo
@@ -9,7 +10,13 @@ try:
 except ImportError:
     import Image
 import re
+import string
 import time
+import jieba
+
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
 
 # fetch your favorite statuses 
 # http://open.weibo.com/wiki/2/statuses/show
@@ -52,13 +59,20 @@ def insertStatus(collection, st, mid):
 
 # extract from a status key-value pairs for visualization
 def process(st):
+    # search context, namely tags, text, poster_name, retweet_text, retweet_poster_name
+    raw_content = ""
+    # store poster_name, retweet_poster_name, tags if exists
+    fixed_content = ""
+
     dic = {}
     dic['post_time'] = st['pytime'].strftime('%Y-%m-%d') # format the python datetime object
     dic['original_link'] = st['original_weibo_link'] # the original weibo link
     if len(st['tags']) != 0:
         dic['tags'] = extractTags(st['tags'])
+        raw_content += dic['tags']
 
     r = st['status'] # status
+    raw_content += r['text']
     dic['text'] = convertUrl(r['text'])
 
     if r.has_key('original_pic'):
@@ -66,18 +80,25 @@ def process(st):
         dic['img_size'] = size2Str(r['original_img_size'])
     if r.has_key('user'):
         dic['poster_name'] = '@' + r['user']['screen_name']
+        raw_content += dic['poster_name'][1:]
+        fixed_content += dic['poster_name'][1:]
         dic['poster_link'] = 'http://weibo.com/' + str(r['user']['id'])
         dic['profile_photo'] = r['user']['profile_image_url']
 
     if r.has_key('retweeted_status'):
         r = r['retweeted_status']
+        raw_content += r['text']
         dic['retweet_text'] = convertUrl(r['text'])
         if r.has_key('original_pic'):
             dic['retweet_img_url'] = r['original_pic']
             dic['retweet_img_size'] = size2Str(r['original_img_size'])
         if r.has_key('user'):
             dic['retweet_poster_name'] = '@' + r['user']['screen_name']
+            raw_content += dic['retweet_poster_name'][1:]
+            fixed_content += " " + dic['retweet_poster_name'][1:]
             dic['retweet_poster_link'] = 'http://weibo.com/' + str(r['user']['id'])
+
+    dic['search_field'] = fixed_content + " " + wordParse(raw_content)
 
     return dic
 
@@ -106,9 +127,34 @@ def convertUrl(text):
         text = text.replace(url, '<a href="' + url + '" target="_blank">' + url + '</a>')
     return text
 
+# delete the url link in status text
+def deleteUrl(text):
+    urls = re.findall(r'http[s]?\://[a-zA-Z0-9\.\?/&\=\:]+', text)
+    urlset = set()
+    for url in urls:
+        if url in urlset:
+            continue
+        urlset.add(url)
+        text = text.replace(url, '')
+    return text
+
 # extract tag string from tags list
 def extractTags(tags):
     list = ""
     for tag in tags:
         list += ", " + tag['tag']
     return list[2:]
+
+# eliminate pure number
+NUMERIC_MATCHER = re.compile("[0-9]+")
+# English and Chinese Punctuations
+PUNCTUATIONS = string.punctuation + string.whitespace + '...，。、《》：；（）-￥？！——……【】“”‘’'
+
+# filter out item that is punctuation or pure number
+def punctuationFilter(x):
+    return (PUNCTUATIONS.find(x) < 0) and (NUMERIC_MATCHER.match(x) == None)
+
+# word segmentation of status text
+def wordParse(str):
+    seg_list = jieba.cut_for_search(deleteUrl(str))
+    return " ".join(filter(punctuationFilter, seg_list))

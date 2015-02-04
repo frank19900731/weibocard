@@ -109,3 +109,25 @@ a:hover, a:visited,
 a:link, a:active {
     text-decoration: none;
 }
+
+#searchForm {
+    margin-bottom: 0;
+    /*background: #BBBBBB;*/
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+#search-text {
+    padding: 0 12px;
+    margin-bottom: 0;
+    height: 26px;
+    background: #FFF;
+    vertical-align: middle;
+    border-radius: 10px;
+    border: 0;
+}
+
+input#search-text:focus {
+    border-radius: 10px;
+}

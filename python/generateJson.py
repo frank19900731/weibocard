@@ -22,16 +22,19 @@ end = datetime.datetime.strptime(config.get('json', 'end'),'%Y-%m-%d')
 print start
 print end
 rs = collection.find({"pytime": {"$lt": end, "$gt": start}}).sort("pytime", pymongo.DESCENDING)
-print "totally " + str(rs.count()) + " statuses"
 
 # convert to json format
 arr = [] # hold status
+index = 0;
 delCount = 0 # count the number of deleted status
 for r in rs:
     if r['status'].has_key('deleted'):
         delCount += 1
         continue
-    arr.append(UT.process(r)) # process status for dict
+    dic = UT.process(r)
+    dic['_id_'] = index
+    arr.append(dic) # process status for dict
+    index += 1
 
 # output json file    
 dataStr = json.dumps(arr) # convert to json format
@@ -41,3 +44,5 @@ f.close()
 
 if delCount > 0:
     print str(delCount) + " deleted"
+print index
+print "totally " + str(rs.count() - delCount) + " statuses"
