@@ -23,7 +23,7 @@ var isMobile = {
 var initDisplay = 20; // number to display on initialization
 var currentIndex = 0; // record number has been displayed
 var loadPerScroll = 30; // load another number per scroll
-var fadeInTime = 2000; 
+var fadeInTime = 2000;
 var dataArray = null; // hold json data
 var dataArrayBackup = null;
 var totalLen; // total number, length of dataArray
@@ -34,7 +34,7 @@ if( mobile )
     loadPerScroll = 8; // on mobile client, load less per scorll
 }
 
-jsonLoad("json/" + currentYear + ".json");
+jsonLoad(json_prefix + currentYear + ".json");
 
 $(window).on('load', function() {
     $('.img_up').fancybox({
@@ -85,7 +85,7 @@ function jumpTo(year) {
         $('<div>').attr('id', 'main').appendTo($('#row'));
         $("html, body").animate({ scrollTop: 0 }, 120);
         currentIndex = 0;
-        jsonLoad("json/" + year + ".json");
+        jsonLoad(json_prefix + year + ".json");
         currentYear = year;
     }
 }
