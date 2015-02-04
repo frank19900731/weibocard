@@ -55,6 +55,7 @@ db.favorites.find({'_id': 3780707769508128})
 ```
 pip install pymongo
 pip install PIL
+pip install jieba
 ```
 
 or
@@ -62,11 +63,12 @@ or
 ```
 easy_install pymongo
 easy_install PIL
+easy_install jieba
 ```
 
 or
 
-到 [pymongo官网](http://api.mongodb.org/python/current/)、[PIL官网](http://www.pythonware.com/products/pil/) 下载安装。
+到 [pymongo官网](http://api.mongodb.org/python/current/)、[PIL官网](http://www.pythonware.com/products/pil/)、[jieba Github](https://github.com/fxsjy/jieba) 下载安装。
 
 还用到了 [sinaweibopy](http://github.liaoxuefeng.com/sinaweibopy/)，只有两个 py 文件，直接包含在本项目中。
 
