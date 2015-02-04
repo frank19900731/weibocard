@@ -25,16 +25,16 @@ var currentIndex = 0; // record number has been displayed
 var loadPerScroll = 30; // load another number per scroll
 var fadeInTime = 2000; 
 var dataArray = null; // hold json data
+var dataArrayBackup = null;
 var totalLen; // total number, length of dataArray
-var currentYear = 2014; // current year data
-var mobile = isMobile.any()
+var mobile = isMobile.any();
 
 if( mobile )
 {
     loadPerScroll = 8; // on mobile client, load less per scorll
 }
 
-jsonLoad("json/2014.json");
+jsonLoad("json/" + currentYear + ".json");
 
 $(window).on('load', function() {
     $('.img_up').fancybox({
@@ -65,6 +65,7 @@ $(window).on('load', function() {
 function jsonLoad(jsonFile) {
     $.getJSON(jsonFile, function(data) {
         dataArray = data;
+        dataArrayBackup = dataArray;
         totalLen = dataArray.length;
         $.each(data, function(index, value) { // initialization
             if (index < initDisplay) {
@@ -77,6 +78,8 @@ function jsonLoad(jsonFile) {
 }
 
 function jumpTo(year) {
+    lunrIndex = null;
+    wbcard_cancel_search();
     if (year != currentYear) {
         $('#main').remove();
         $('<div>').attr('id', 'main').appendTo($('#row'));
@@ -149,7 +152,7 @@ function insertCard(data) {
             var oImgUp = $('<a>').addClass('img_up').attr('href', data.retweet_img_url).appendTo(oRetweet);
             $('<img>').addClass('post_img').attr('src', data.retweet_img_url).css({'height': calHeight(data.retweet_img_size)}).appendTo(oImgUp);
         }
-    } else { 
+    } else {
         if (data.img_url != undefined) {
             var oImgCenter = $('<div>').addClass('img_center').appendTo(oContent);
             var oImgUp = $('<a>').addClass('img_up').attr('href', data.img_url).appendTo(oImgCenter);
@@ -201,17 +204,15 @@ function checkScrollSlide() {
 
 var lunrIndex = null;
 var searchResult = null;
-var dataArrayBackup = null;
 
 function wbcard_lunr_init() {
-    dataArrayBackup = dataArray;
     lunrIndex = lunr(function () {
         this.field('search_field');
         this.ref("_id_");
     });
-    if (dataArray != null) {
-        for(var i = 0; i< dataArray.length; i++)
-            lunrIndex.add(dataArray[i]);
+    if (dataArrayBackup != null) {
+        for(var i = 0; i< dataArrayBackup.length; i++)
+            lunrIndex.add(dataArrayBackup[i]);
         console.log("Lunr search successfully inited.")
     }
 }
