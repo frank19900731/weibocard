@@ -1506,7 +1506,7 @@ div .bar-box .bar-flip {
   height: 30px;
   padding: 0 20px;
   background: #6589d4;
-  font-family: "Open Sans", Arial, sans-serif;
+  /*font-family: "Open Sans", Arial, sans-serif;*/
   font-weight: 600;
   color: #fff;
   line-height: 30px;

@@ -26,17 +26,21 @@ rs = collection.find({"pytime": {"$lt": end, "$gt": start}}).sort("pytime", pymo
 # convert to json format
 arr = [] # hold status
 index = 0;
+noOrigin = 0
 delCount = 0 # count the number of deleted status
 for r in rs:
     if r['status'].has_key('deleted'):
         delCount += 1
+        continue
+    if(not r.has_key('original_weibo_link')):
+        noOrigin += 1
         continue
     dic = UT.process(r)
     dic['_id_'] = index
     arr.append(dic) # process status for dict
     index += 1
 
-# output json file    
+# output json file
 dataStr = json.dumps(arr) # convert to json format
 f = open(config.get('json', 'filename'), 'w')
 f.write(dataStr)
@@ -44,5 +48,7 @@ f.close()
 
 if delCount > 0:
     print str(delCount) + " deleted"
+if noOrigin > 0:
+    print str(noOrigin) + " no original weibo link"
 print index
-print "totally " + str(rs.count() - delCount) + " statuses"
+print "totally " + str(rs.count() - delCount - noOrigin) + " statuses"

@@ -194,7 +194,7 @@ function waterfall() {
 
 function checkScrollSlide() {
     var $lastBox = $('#main>div').last();
-    var lastBoxDis = $lastBox.offset().top + 300;
+    var lastBoxDis = $lastBox.offset().top + 200;
     var scrollTop = $(window).scrollTop();
     var documentH = $(window).height();
     return (lastBoxDis < scrollTop + documentH) ? true : false;
